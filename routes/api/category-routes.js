@@ -15,8 +15,14 @@ router.get('/', (req, res) => {
       
     }
   )
-  .then(categoryInfo => 
-    res.json(categoryInfo))
+    .then(categoryInfo => {
+      if (!categoryInfo) {
+        res.status(404).json({ message: 'Category info not found!' });
+        return;
+      }
+
+      res.json(categoryInfo)
+    })
 
     .catch(err => {
       console.log(err);
@@ -44,8 +50,14 @@ router.get('/:id', (req, res) => {
         }]
     }
   )
-  .then(categoryInfo => 
-    res.json(categoryInfo))
+  .then(categoryInfo => {
+    if (!categoryInfo) {
+      res.status(404).json({ message: 'Category info not found!' });
+      return;
+    }
+
+    res.json(categoryInfo)
+  })
 
     .catch(err => {
       console.log(err);
@@ -86,7 +98,12 @@ router.put('/:id', (req, res) => {
       }
     })
     .then(categoryInfo => {
-      res.json(categoryInfo);
+      if (!categoryInfo) {
+        res.status(404).json({ message: 'Category info not found!' });
+        return;
+      }
+
+      res.json(categoryInfo)
     })
 
 
@@ -103,9 +120,14 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-    .then(categoryInfo => {
-      res.json(categoryInfo);
-    })
+  .then(categoryInfo => {
+    if (!categoryInfo) {
+      res.status(404).json({ message: 'Category info not found!' });
+      return;
+    }
+
+    res.json(categoryInfo)
+  })
     .catch(err => {
       console.log(err);
       res.status(400).json(err);

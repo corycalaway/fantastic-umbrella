@@ -18,7 +18,15 @@ router.get('/', (req, res) => {
       }
     ]
   })
-  .then(answer => res.json(answer))
+  .then(productInfo => {
+      if (!productInfo) {
+        res.status(404).json({ message: 'Product info not found!' });
+        return;
+      }
+
+      res.json(productInfo)
+    })
+    
   
   .catch(err => {
     console.log(err);
@@ -41,7 +49,14 @@ router.get('/:id', (req, res) => {
       attributes: ['tag_name']
     }]
   })
-  .then(answer => res.json(answer))
+  .then(productInfo => {
+    if (!productInfo) {
+      res.status(404).json({ message: 'Product info not found!' });
+      return;
+    }
+
+    res.json(productInfo)
+  })
 
   .catch(err => {
     console.log(err);
@@ -135,6 +150,11 @@ router.delete('/:id', (req, res) => {
     }
   })
   .then(productInfo => {
+    if (!productInfo) {
+      res.status(404).json({ message: 'Product info not found!' });
+      return;
+    }
+
     res.json(productInfo)
   })
   .catch(err => {

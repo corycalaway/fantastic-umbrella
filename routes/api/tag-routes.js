@@ -15,8 +15,14 @@ router.get('/', (req, res) => {
        
     }
   )
-    .then(tagInfo => 
-      res.json(tagInfo))
+  .then(tagInfo => {
+    if (!tagInfo) {
+      res.status(404).json({ message: 'Tag info not found!' });
+      return;
+    }
+
+    res.json(tagInfo)
+  })
 
     .catch(err => {
       console.log(err);
@@ -33,8 +39,14 @@ router.get('/:id', (req, res) => {
       model: Product,
     }
   })
-    .then(tagInfo => 
-      res.json(tagInfo))
+    .then(tagInfo => {
+      if (!tagInfo) {
+        res.status(404).json({ message: 'Tag info not found!' });
+        return;
+      }
+
+      res.json(tagInfo)
+    })
       
     .catch(err => {
       console.log(err);
@@ -48,6 +60,7 @@ router.post('/', (req, res) => {
     tag_name: req.body.tag_name
   })
     .then(tagInfo => 
+      
       res.json(tagInfo))
 
     .catch(err => {
@@ -90,6 +103,10 @@ router.delete('/:id', (req, res) => {
     }
   })
     .then(tagInfo => {
+      if (!tagInfo) {
+        res.status(404).json({ message: 'Tag info not found!' });
+        return;
+      }
       res.json(tagInfo);
     })
 
