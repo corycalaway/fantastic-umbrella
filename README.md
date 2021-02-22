@@ -21,4 +21,4 @@ Licensed under the [MIT_License](LICENSE)
     - GitHub: https://github.com/corycalaway/E-Commerce
 
 ### Video link
-- Instructional Video: 
+- Instructional Video: https://drive.google.com/file/d/1pnZcjP4iIL-12EOUYuNQYJJJ9ARwQpyU/view
